@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Wird Outlook Extension POC",
+  "version": "0.0.1",
+  "description": "Poc for new Wird Outlook Extension.",
+  "icons": {
+    "128": "assets/wLogoGreen.png"
+  },
+  "action": {},
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "https://outlook.office.com/*",
+        "https://outlook.office365.com/*"
+      ],
+      "resources": ["src/index.js", "src/consts.js"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://outlook.office.com/mail/*",
+        "https://outlook.office365.com/mail/*"
+      ],
+      "js": ["src/wd-extension-load.js", "src/wd-extension-proxy.js"],
+      "css": ["assets/styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "src/wd-extension-sw.js",
+    "type": "module"
+  },
+  "permissions": ["scripting"],
+  "host_permissions": [
+    "https://outlook.office.com/mail/*",
+    "https://outlook.office365.com/mail/*"
+  ]
+}
