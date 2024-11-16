@@ -1,7 +1,7 @@
 import MainButton from "./components/MainButton";
 import PendingBadge from "./components/PendingBadge";
+import SLAButton from "./components/sla/SLAButton";
 import { useStore } from "./stores/store";
-import ActionButton from "./components/ActionButton";
 
 function App() {
   const selectedThreadId = useStore((state) => state.selectedThreadId);
@@ -12,24 +12,17 @@ function App() {
     pendingMessages.some((m) => m.threadId === selectedThreadId);
 
   return (
-    <div id="mi-div-id-po">
-      <div
-        style={{
-          width: 400,
-          height: 400,
-          position: "absolute",
-          top: "20vh",
-          right: 0,
-          zIndex: 9999,
-          border: "1px solid transparent",
-          backgroundColor: "transparent",
-          pointerEvents: "none",
-        }}
-      >
-        <MainButton />
-        <ActionButton />
-        {currentThreadIsPending && <PendingBadge />}
-      </div>
+    <div
+      style={{
+        position: "fixed",
+        top: "45vh",
+        right: 0,
+        zIndex: 9999,
+      }}
+    >
+      <MainButton />
+      <SLAButton index={0} label="sla1" value={0} />
+      {currentThreadIsPending && <PendingBadge />}
     </div>
   );
 }

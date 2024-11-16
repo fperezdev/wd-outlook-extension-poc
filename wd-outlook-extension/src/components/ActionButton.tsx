@@ -3,12 +3,18 @@ import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { sendAction } from "@/utils/background-connection";
 import { useState } from "react";
+import { useShallow } from "zustand/shallow";
 
 const ActionButton = () => {
-  const pendingMessages = useStore((state) => state.pendingMessages);
-  const setPendingMessages = useStore((state) => state.setPendingMessages);
-  const selectedThreadId = useStore((state) => state.selectedThreadId);
-  const openMenu = useStore((state) => state.openMenu);
+  const { pendingMessages, setPendingMessages, selectedThreadId, openMenu } =
+    useStore(
+      useShallow((state) => ({
+        pendingMessages: state.pendingMessages,
+        setPendingMessages: state.setPendingMessages,
+        selectedThreadId: state.selectedThreadId,
+        openMenu: state.openMenu,
+      }))
+    );
 
   const [openPopover, setOpenPopover] = useState(false);
 

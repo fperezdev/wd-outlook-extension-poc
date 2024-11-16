@@ -10,9 +10,26 @@ app.use(express.static("public"));
 
 const messages = require("./messages");
 
+const configuration = {
+  sla: [
+    {
+      label: "0 - 1 horas",
+      value: 0,
+    },
+    {
+      label: "1 - 2 horas",
+      value: 60,
+    },
+    {
+      label: "2+ horas",
+      value: 120,
+    },
+  ],
+};
+
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
-  socket.emit("messages", { data: { messages } });
+  socket.emit("messages", { data: { messages, configuration } });
 
   socket.on("action", (msg) => {
     if (msg.action === "connect")

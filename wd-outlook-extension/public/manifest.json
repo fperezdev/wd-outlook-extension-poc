@@ -23,14 +23,14 @@
         "https://outlook.office365.com/mail/*"
       ],
       "js": ["src/wd-extension-load.js", "src/wd-extension-proxy.js"],
-      "css": ["assets/styles.css"]
+      "css": ["src/index.css"]
     }
   ],
   "background": {
     "service_worker": "src/wd-extension-sw.js",
     "type": "module"
   },
-  "permissions": ["scripting"],
+  "permissions": ["scripting", "storage"],
   "host_permissions": [
     "https://outlook.office.com/mail/*",
     "https://outlook.office365.com/mail/*"

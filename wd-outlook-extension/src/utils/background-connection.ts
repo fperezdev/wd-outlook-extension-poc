@@ -15,6 +15,7 @@ export async function connectToBackground() {
   window.addEventListener("message", (event) => {
     const { data, origin } = event.data;
     if (!data || origin !== ORIGIN.WD_EXTENSION_BACKGROUND_ORIGIN) return;
+    console.log("wd-ext", data.messages);
     if (data.messages) useStore.getState().setPendingMessages(data.messages);
   });
 }

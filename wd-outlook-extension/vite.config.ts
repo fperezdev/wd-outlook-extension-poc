@@ -14,10 +14,10 @@ export default defineConfig({
     }),
   ],
   build: {
+    emptyOutDir: false,
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, "src/main.tsx"),
-        styles: path.resolve(__dirname, "src/index.css"),
         consts: path.resolve(__dirname, "src/lib/consts.ts"),
         "wd-extension-load": path.resolve(
           __dirname,
